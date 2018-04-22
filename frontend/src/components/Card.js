@@ -1,10 +1,6 @@
 import React from 'react';
 import Clock from './Clock'
 
-const style = {
-  border: "2px solid gray",
-};
-
 const style2 = {
   border: '1px solid gray',
   borderRadius: '16px',
@@ -12,16 +8,7 @@ const style2 = {
   marginBottom: '30px'
 }
 
-const fieldStyle = {
-  display: 'flex',
-  padingLeft: '1px',
-}
-
-const priceStyle = {
-
-}
-
-const Card = () => (
+const Card = (props) => (
   <div>
   <div className="row">
     <div className="8u 12u$(small)">
@@ -36,7 +23,7 @@ const Card = () => (
           </div>
 
           <div className="6u 12u$(small)">
-            ETH
+            <div>{props.coin}</div>
             <div class="row">
               <div class="3u 12u$(small)">
                 <input type="text" name="eth" value='1'/>
@@ -51,12 +38,20 @@ const Card = () => (
     </div>
 
     <div className="4u 12u$(small)">
-      <Clock/>            
+      <Clock/>
     </div>
   </div>
     <div class="row 50% uniform">
-      <div class="2u"><button class="button special fit">BTC</button></div>
-      <div class="2u"><button class="button special fit">ETH</button></div>
+      <div class="2u"><button
+        class="button special fit"
+        onClick={()=>{props.onClick('BTC')}}
+        style={props.coin === 'BTC'?{backgroundColor:'#18bfef'}:{backgroundColor:'#212931'}}
+        >BTC</button></div>
+      <div class="2u"><button
+        class="button special fit"
+        onClick={()=>{props.onClick('ETH')}}
+        style={props.coin === 'ETH'?{backgroundColor:'#18bfef'}:{backgroundColor:'#212931'}}
+        >ETH</button></div>
       <div class="8u$"><button class="button fit">BUYNOW</button></div>
     </div>
   </div>

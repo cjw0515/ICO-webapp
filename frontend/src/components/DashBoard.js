@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
 import Content from './Content';
 import Card from './Card';
-import Card2 from './Card2';
 
 const style2 = {
   height: 300,
@@ -14,10 +13,27 @@ const style2 = {
 
 class DashBoard extends Component{
 
+  state={
+    coin:'BTC'
+  }
+
+  handleCoinValue = (value) => {
+    this.setState({
+      coin: value
+    });
+  }
+
   render(){
+
+    const { coin } = this.state;
+    const { handleCoinValue } = this;
+
     return(
       <div>
-        <Card/>        
+        <Card
+          coin={coin}
+          onClick={handleCoinValue}
+          />
       </div>
     )
   }
