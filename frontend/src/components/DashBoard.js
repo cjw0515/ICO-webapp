@@ -17,8 +17,7 @@ class DashBoard extends Component{
   render(){
     return(
       <div>
-        <Card/>
-        <Card2/>
+        <Card/>        
       </div>
     )
   }
