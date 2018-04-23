@@ -3,12 +3,12 @@ import React, {Component} from 'react';
 class Clock extends Component{
 
   componentDidMount(){
-    var intervalId = setInterval(this.timer, 1000);
+    let intervalId = setInterval(this.timer, 1000);
     this.setState({intervalId: intervalId})
   }
 
   state = {
-    givenDate: "May, 20, 2018",
+    givenDate: this.props.givenDate,
     currentCount: 0,
     intervalId:''
   }
@@ -21,14 +21,14 @@ class Clock extends Component{
 
   createClock = () => {
     const formattedGivenDate = new Date(this.state.givenDate);
-    var today = new Date();
-    var msDiff = formattedGivenDate - today;
-    var days = parseInt(msDiff / (24 * 3600 * 1000));
-    var hours = parseInt(msDiff / (3600 * 1000) - (days * 24));
-    var mins = parseInt(msDiff / (60 * 1000) - (days * 24 * 60) - (hours * 60));
-    var secs = parseInt(msDiff / (1000) - (mins * 60) - (days * 24 * 60 * 60) - (hours * 60 * 60));
+    let today = new Date();
+    let msDiff = formattedGivenDate - today;
+    let days = parseInt(msDiff / (24 * 3600 * 1000));
+    let hours = parseInt(msDiff / (3600 * 1000) - (days * 24));
+    let mins = parseInt(msDiff / (60 * 1000) - (days * 24 * 60) - (hours * 60));
+    let secs = parseInt(msDiff / (1000) - (mins * 60) - (days * 24 * 60 * 60) - (hours * 60 * 60));
 
-    var element = React.createElement(
+    let element = React.createElement(
       'div', {
         className: 'clockWrapper',
       },

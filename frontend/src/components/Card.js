@@ -18,18 +18,19 @@ const Card = (props) => (
           <div className="6u 12u$(small)">
               <h3>Investment</h3>
               <div style={style2}>
-                0 XCO
+                {props.totalXCO} XCO
               </div>
           </div>
 
           <div className="6u 12u$(small)">
             <div>{props.coin}</div>
             <div class="row">
-              <div class="3u 12u$(small)">
-                <input type="text" name="eth" value='1'/>
+              <div class="4u 12u$(small)">
+                <input type="text" value={props.amount} onChange={props.onChange}/>
               </div>
-              <div class="9u$ 12u$">
-               <p>3,174 + <u>47%</u> = 4983 XCO</p>
+              <div class="8u$ 12u$">
+               <p>{props.XCO} + <u>{props.bonus*100}%</u> = {props.totalXCO} XCO</p>
+
               </div>
             </div>
           </div>
@@ -38,7 +39,9 @@ const Card = (props) => (
     </div>
 
     <div className="4u 12u$(small)">
-      <Clock/>
+      <Clock
+        givenDate={props.givenDate}
+        />
     </div>
   </div>
     <div class="row 50% uniform">

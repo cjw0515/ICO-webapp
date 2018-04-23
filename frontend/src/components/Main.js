@@ -7,7 +7,10 @@ class Main extends Component{
   render(){
     return(
       <div id="main">
-        <DashBoard/>    
+        <DashBoard
+          givenDate={this.props.givenDate}
+          bonus={this.props.bonus}
+          />
         <Footer/>
       </div>
     )
