@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
 import Content from './Content';
 import Card from './Card';
+import Card2 from './Card2'
 
 const style2 = {
   height: 300,
@@ -70,6 +71,7 @@ class DashBoard extends Component{
           totalXCO={totalXCO}
           XCO={XCO}
           />
+        <Card2/>
       </div>
     )
   }

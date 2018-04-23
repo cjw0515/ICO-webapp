@@ -5,11 +5,11 @@ const style2 = {
   border: '1px solid gray',
   borderRadius: '16px',
   padding: '0 24px',
-  marginBottom: '30px'
+  marginBottom: '20px'
 }
 
 const Card = (props) => (
-  <div>
+  <div style={style2}>
   <div className="row">
     <div className="8u 12u$(small)">
       <ul className="actions vertical">
@@ -44,7 +44,7 @@ const Card = (props) => (
         />
     </div>
   </div>
-    <div class="row 50% uniform">
+    <div class="row 70% uniform">
       <div class="2u"><button
         class="button special fit"
         onClick={()=>{props.onClick('BTC')}}
@@ -56,6 +56,8 @@ const Card = (props) => (
         style={props.coin === 'ETH'?{backgroundColor:'#18bfef'}:{backgroundColor:'#212931'}}
         >ETH</button></div>
       <div class="8u$"><button class="button fit">BUYNOW</button></div>
+    </div>
+    <div style={{padding: '0 24px', marginBottom: '20px'}}>
     </div>
   </div>
 );
