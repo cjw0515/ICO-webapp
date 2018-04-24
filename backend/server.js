@@ -10,9 +10,13 @@ const db = mongoose.connection;
 db.on('error', console.error);
 db.once('open', () => { console.log('Connected to mongodb server'); });
 // mongoose.connect('mongodb://username:password@host:port/database=');
-mongoose.connect('mongodb://localhost/memoapp');
+mongoose.connect('mongodb://localhost/ICOwebApp');
 
 app.use(bodyParser.json());
 app.use('/api', api);
+
+app.get('/hello/abc', (req, res) => {
+  res.send('hello');
+});
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

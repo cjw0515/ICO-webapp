@@ -3,7 +3,6 @@ import Intro from './components/Intro'
 import Header from './components/Header'
 import Nav from './components/Nav'
 import Main from './components/Main'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class App extends Component {
 
@@ -43,18 +42,16 @@ class App extends Component {
 
     return (
       <div>
-        <MuiThemeProvider>
-          <Intro
-            givenDate={givenDate}
-            bonus={bonus}
-            />
-          <Header/>
-          <Nav/>
-          <Main
-            givenDate={givenDate}
-            bonus={bonus}
-            />
-        </MuiThemeProvider>
+        <Intro
+          givenDate={givenDate}
+          bonus={bonus}
+          />
+        <Header/>
+        <Nav/>
+        <Main
+          givenDate={givenDate}
+          bonus={bonus}
+          />    
       </div>
     );
   }

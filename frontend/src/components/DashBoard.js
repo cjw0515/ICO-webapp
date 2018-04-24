@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Paper from 'material-ui/Paper';
-import Content from './Content';
-import Card from './Card';
-import Card2 from './Card2'
+import Investment from './investment';
+import SecondContainer from './container/SecondContainer'
+import * as utils from '../utils/utils'
+import axios from 'axios';
 
 const style2 = {
   height: 300,
@@ -19,11 +19,64 @@ class DashBoard extends Component{
     amount:0,
     XCO:0,
     totalXCO:0,
+    raisedUSD:165416,
+    soldXCO:1648154,
+    contributions: [],
+  }
+
+  componentDidMount() {
+    this.loadContributions();
+    this.loadTotal();
+  }
+
+  loadContributions = () => {
+    return axios.get('/api/contribution').then(
+      response => {
+        const data = response.data;
+        this.setState({
+          contributions: data
+        });
+      }
+    );
+  }
+
+  loadTotal = () => {
+    return axios.get('/api/contribution/sum').then(
+      response => {
+        const data = response.data;
+        const result = utils.calculateUSD(data);
+        this.setState({
+          raisedUSD: result.totalUSD,
+          soldXCO: result.totalXCO
+        });
+      }
+    );
+  }
+
+  buyCoin = (email, coin, amount, xco) => {
+    if( amount === 0 ){
+      alert( '갯수를 넣어주세요.');
+      return;
+    }
+    return axios.post('/api/contribution/',{
+      email: email,
+      coin: coin,
+      amount: amount,
+      xco: xco
+    }).then(
+      response => {
+        this.loadContributions();
+        this.loadTotal();
+        this.setState({
+          amount: 0
+        });
+      }
+    );
   }
 
   handleCoinValue = (value) => {
     const { amount } = this.state;
-    const result = this.calculateXCO(value, amount, this.props.bonus );
+    const result = utils.calculateXCO(value, amount, this.props.bonus );
     this.setState({
       coin: value,
       totalXCO: result.totalXCO,
@@ -33,11 +86,10 @@ class DashBoard extends Component{
 
   handleChange = (e) =>{
     const curValue = e.target.value;
-    const pattern = /^-?(\d{1,3}([.]\d{0,2})?)?$/;
     const newValue = curValue.replace(/[^0-9]/g, '');
     const amount = newValue;
     const coin = this.state.coin;
-    const result = this.calculateXCO(coin, amount, this.props.bonus );
+    const result = utils.calculateXCO(coin, amount, this.props.bonus );
 
     this.setState({
       amount: amount,
@@ -46,22 +98,15 @@ class DashBoard extends Component{
     })
   }
 
-  calculateXCO = ( coin, coinAmount, bonus ) =>{
-    const XCO = coin === "BTC" ? coinAmount * 5 : coinAmount * 3;
-    const totalXCO = XCO + XCO * bonus;
-
-    return { XCO, totalXCO };
-  }
-
   render(){
 
-    const { coin, amount, totalXCO, XCO } = this.state;
-    const { handleCoinValue, handleChange } = this;
+    const { coin, amount, totalXCO, XCO, raisedUSD, soldXCO, contributions } = this.state;
+    const { handleCoinValue, handleChange, buyCoin } = this;
 
 
     return(
       <div>
-        <Card
+        <Investment
           coin={coin}
           amount={amount}
           onClick={handleCoinValue}
@@ -70,8 +115,13 @@ class DashBoard extends Component{
           bonus={this.props.bonus}
           totalXCO={totalXCO}
           XCO={XCO}
+          buyCoin={buyCoin}
           />
-        <Card2/>
+        <SecondContainer
+          raisedUSD={raisedUSD}
+          soldXCO={soldXCO}
+          contributions={contributions}
+          />
       </div>
     )
   }

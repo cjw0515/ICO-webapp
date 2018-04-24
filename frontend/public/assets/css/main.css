@@ -4608,14 +4608,14 @@
 			}
 			.numbers span, .labels span {
 				display: flex;
-				width: 125px;
+				width: 100px;
 				justify-content: center;
 				flex-grow: 1;
 				margin: 0 10px;
 			}
 			.numbers span {
-				font-size: 45px;
-				padding: 20px 0;
+				font-size: 30px;
+				padding: 10px 0;
 				background: rgba(255,255,255,.5);
 			}
 			.labels span {
