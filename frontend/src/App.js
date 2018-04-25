@@ -3,42 +3,16 @@ import Intro from './components/Intro'
 import Header from './components/Header'
 import Nav from './components/Nav'
 import Main from './components/Main'
+import * as utils from './utils/utils'
 
 class App extends Component {
 
-  handleBonus = (givenDate) => {
-    const formattedGivenDate = new Date(givenDate);
-    let today = new Date();
-    let msDiff = formattedGivenDate - today;
-    let days = parseInt(msDiff / (24 * 3600 * 1000));
-    console.log(typeof days);
-    let bonus = 0;
 
-    switch(true){
-      case(days < 5):
-        bonus=0;
-        break;
-      case(days < 10):
-        bonus=0.05;
-        break;
-      case(days < 15):
-        bonus=0.1;
-        break;
-      case(days < 20):
-        bonus=0.2;
-        break;
-      default:
-        bonus=0;
-        break;
-    }
-
-    return bonus;
-  }
 
   render() {
 
-    const givenDate = "May, 3, 2018";
-    const bonus = this.handleBonus(givenDate);
+    const givenDate = "May, 15, 2018";
+    const bonus = utils.getBonus(givenDate);
 
     return (
       <div>
@@ -51,7 +25,7 @@ class App extends Component {
         <Main
           givenDate={givenDate}
           bonus={bonus}
-          />    
+          />
       </div>
     );
   }
