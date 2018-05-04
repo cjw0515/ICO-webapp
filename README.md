@@ -6,9 +6,7 @@
 ![Resume Preview](https://s3.ap-northeast-2.amazonaws.com/resume-cjw/img/ico.JPG)
 
 
-## Usage
 
-back
 ## Stack
 ### Frontend
 
