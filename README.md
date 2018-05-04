@@ -11,6 +11,7 @@
 ### Frontend
 
 - react
+- ES6
 
 ### Server
 
