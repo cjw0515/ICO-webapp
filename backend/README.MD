@@ -10,9 +10,6 @@
 
 back
 ## Stack
-
-Everything in this project is in JavaScript. 
-
 ### Frontend
 
 - react
